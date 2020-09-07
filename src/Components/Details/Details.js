@@ -9,7 +9,7 @@ import ThumbUpAltOutlinedIcon from "@material-ui/icons/ThumbUpAltOutlined";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import SendIcon from "@material-ui/icons/Send";
 import ShareIcon from "@material-ui/icons/Share";
-
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 
 const Details = () => {
 
@@ -70,14 +70,23 @@ const Details = () => {
     justifyContent: "space-between",
   };
  //end css style part
+const [like,setLike]=useState(false)
 
   return (
     <div className="container">
       <Post post={post}>
         <div style={socialIcons}>
           <div style={{ display: "flex" }}>
-            <ThumbUpAltOutlinedIcon />
-            <b style={{ marginLeft: "5px" }}>Like</b>
+            <span onClick={()=>setLike(!like)}>
+              {
+                like ? <ThumbUpAltIcon color="primary" />
+                : <ThumbUpAltOutlinedIcon  />
+              }
+            </span>
+            {
+              like ? <b  style={{ marginLeft: "5px", color:"blue" }}>Like</b>
+              : <b style={{ marginLeft: "5px" }}>Like</b>
+            }
           </div>
           <div style={{ display: "flex" }}>
             <ChatBubbleOutlineIcon />
