@@ -1,29 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Post from "../Post/Post";
+
 import Comment from "../Comment/Comment";
 import authors from "../../Author";
-import Input from "@material-ui/core/Input";
-import { Button } from "@material-ui/core";
-import ThumbUpAltOutlinedIcon from "@material-ui/icons/ThumbUpAltOutlined";
-import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
+
 import SendIcon from "@material-ui/icons/Send";
-import ShareIcon from "@material-ui/icons/Share";
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import SocialIcon from "../SocialIcon/SocialIcon";
+
 
 const Details = () => {
 
-  const [post, setPost] = useState({});
   const { id } = useParams();
-  useEffect(() => {
-    const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
-    console.log(url);
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setPost(data);
-      });
-  }, []);
 
   const [comments, setComments] = useState([]);
   useEffect(() => {
@@ -64,40 +51,15 @@ const Details = () => {
     border: "1px solid lightgray",
     padding: "1px 3px",
   };
-  const socialIcons = {
-    width: 600,
-    display: "flex",
-    justifyContent: "space-between",
-  };
+  
  //end css style part
-const [like,setLike]=useState(false)
+
 
   return (
     <div className="container">
-      <Post post={post}>
-        <div style={socialIcons}>
-          <div style={{ display: "flex" }}>
-            <span onClick={()=>setLike(!like)}>
-              {
-                like ? <ThumbUpAltIcon color="primary" />
-                : <ThumbUpAltOutlinedIcon  />
-              }
-            </span>
-            {
-              like ? <b  style={{ marginLeft: "5px", color:"blue" }}>Like</b>
-              : <b style={{ marginLeft: "5px" }}>Like</b>
-            }
-          </div>
-          <div style={{ display: "flex" }}>
-            <ChatBubbleOutlineIcon />
-            <b style={{ marginLeft: "5px" }}>Comment</b>
-          </div>
-          <div style={{ display: "flex" }}>
-            <ShareIcon />
-            <b style={{ marginLeft: "5px" }}>Share</b>
-          </div>
-        </div>
-      </Post>
+      
+      <SocialIcon id={id}></SocialIcon>
+      
       <div style={commentBox}>
         <img
           style={imgStyle}
@@ -111,7 +73,7 @@ const [like,setLike]=useState(false)
       {comments.map((comment, i) => {
         const author = authors[Math.floor(Math.random() * authors.length)];
         return (
-          <Comment key={comment.id} comment={comment} author={author}></Comment>
+          <Comment key={i} comment={comment} author={author}></Comment>
         );
       })}
       

@@ -20,6 +20,7 @@ const Home = () => {
         return (
           <Post key={post.id} post={post}>
             <Link to={"/post/" + post.id} style={{ textDecoration: "none" }}>
+             
               <Button
                 style={{ padding: "5px" }}
                 variant="contained"
