@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Post from "../Post/Post";
-import Input from "@material-ui/core/Input";
-import { Button } from "@material-ui/core";
+
 import ThumbUpAltOutlinedIcon from "@material-ui/icons/ThumbUpAltOutlined";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import ShareIcon from "@material-ui/icons/Share";
@@ -28,13 +27,17 @@ const SocialIcon = (props) => {
         justifyContent: "space-between",
       };
 
+
+    const shareHandle=()=>{
+        console.log(window.location.href)
+    }
     const [like,setLike]=useState(false)
     return (
         <div>
             <Post post={post}>
         <div style={socialIcons}>
-          <div style={{ display: "flex" }}>
-            <span style={{cursor:"pointer"}}  onClick={()=>setLike(!like)}>
+          <div style={{cursor:"pointer",display:"flex"}}  onClick={()=>setLike(!like)} >
+            <span>
               {
                 like ? <ThumbUpAltIcon color="primary" />
                 : <ThumbUpAltOutlinedIcon  />
@@ -49,10 +52,12 @@ const SocialIcon = (props) => {
             <ChatBubbleOutlineIcon />
             <b style={{ marginLeft: "5px" }}>Comment</b>
           </div>
-          <div style={{ display: "flex" }}>
+
+          <div onClick={shareHandle} style={{ marginLeft: "5px", display:"flex" }} >
             <ShareIcon />
-            <b style={{ marginLeft: "5px" }}>Share</b>
+            <b>Share</b>
           </div>
+
         </div>
       </Post>
         </div>
