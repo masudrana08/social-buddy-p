@@ -54,6 +54,8 @@ const Post = (props) => {
         </div>
         <CardContent>
           <h3 className={classes.title}>{title}</h3>
+          <img src={`https://picsum.photos/600/300?random=${id}`}/>
+
           <p>{body}</p>
         </CardContent>
         <CardActions>{props.children}</CardActions>
