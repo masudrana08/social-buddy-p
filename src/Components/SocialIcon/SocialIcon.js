@@ -27,11 +27,11 @@ const SocialIcon = (props) => {
         justifyContent: "space-between",
       };
 
-
-    const shareHandle=()=>{
-        console.log(window.location.href)
-    }
+      
+   
     const [like,setLike]=useState(false)
+
+  
     return (
         <div>
             <Post post={post}>
@@ -53,10 +53,13 @@ const SocialIcon = (props) => {
             <b style={{ marginLeft: "5px" }}>Comment</b>
           </div>
 
-          <div onClick={shareHandle} style={{ marginLeft: "5px", display:"flex" }} >
+          
+          <div style={{ marginLeft: "5px", display:"flex" }} >
             <ShareIcon />
             <b>Share</b>
           </div>
+     
+   
 
         </div>
       </Post>

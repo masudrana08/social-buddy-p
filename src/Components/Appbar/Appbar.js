@@ -119,7 +119,7 @@ const useStyles = makeStyles((theme) => ({
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link style={{textDecoration:"none", color:"white"}} to="/auth">My account</Link></MenuItem>
     </Menu>
   );
 
@@ -165,7 +165,7 @@ const useStyles = makeStyles((theme) => ({
   );
 
   return (
-    <div className={classes.grow}>
+    <div style={{position:"sticky",top:"0px"}} className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -178,7 +178,7 @@ const useStyles = makeStyles((theme) => ({
           </IconButton>
           <Link to="/" style={{ textDecoration: 'none', color:"white" }}>
             <Typography className={classes.title} variant="h6" noWrap>
-              FaultBook
+            SocialBuddy
             </Typography>
           </Link>
           <div className={classes.search}>

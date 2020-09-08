@@ -3,7 +3,6 @@ import { Card, CardContent, CardActions } from "@material-ui/core";
 import FaceIcon from "@material-ui/icons/Face";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
 import "./Post.css";
 
 const useStyles = makeStyles({

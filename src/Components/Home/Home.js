@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Post from "../Post/Post";
 import { Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 
-const Home = () => {
+const Home = (props) => {
   const [posts, setPost] = useState([]);
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
@@ -14,6 +14,9 @@ const Home = () => {
         setPost(data);
       });
   }, []);
+
+
+
   return (
     <div className="container">
       {posts.map((post) => {
