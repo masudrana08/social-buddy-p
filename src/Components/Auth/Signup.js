@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import { FormControl, InputLabel, Input, FormHelperText, FormGroup, Button } from "@material-ui/core/";
 
 import * as firebase from "firebase/app"
 import "firebase/auth";
+import { MyContext } from "../../App";
 
 
 
-const Signup = (props) => {
+const Signup = () => {
+
+  const [isSignedIn,setIsSignedIn,created, setCreated]=useContext(MyContext)
     const [email,setEmail]=useState('')
     const handleEmail=(event)=>{
         setEmail(event.target.value)
@@ -19,9 +22,9 @@ const Signup = (props) => {
     const handleSignup=()=>{
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(res=>{
-           return(
-               props.setIsSignedIn(false)
-           )
+          
+               setCreated(false)
+           
            
         })
         .catch(err=>console.log(err))
@@ -47,7 +50,7 @@ const Signup = (props) => {
 
       <FormControl>
         <InputLabel htmlFor="my-input">Phone Number</InputLabel>
-        <Input onChange={handlePassword} id="my-input" aria-describedby="my-helper-text" value={password} />
+        <Input  id="my-input" aria-describedby="my-helper-text"  />
         <FormHelperText id="my-helper-text">
           example: 01796956***
         </FormHelperText>

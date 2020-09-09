@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import './App.css'
 import {BrowserRouter as Router, Route,Switch} from 'react-router-dom'
 import Details from "./Components/Details/Details";
@@ -7,12 +7,14 @@ import Appbar from "./Components/Appbar/Appbar";
 
 import NotFound from "./Components/NotFound/NotFound";
 import Signup from "./Components/Auth/Signup";
-import Auth from "./Components/Auth/Auth";
+import {Auth} from "./Components/Auth/Auth";
 import Signin from "./Components/Auth/Signin";
+export const MyContext=createContext()
 function App() {
- 
+  const [isSignedIn,setIsSignedIn]=useState(false)
+  const [created, setCreated]=useState(false)
   return (
-    
+    <MyContext.Provider value={[isSignedIn,setIsSignedIn,created, setCreated]}>
     <Router>
       <Appbar></Appbar>
       
@@ -32,7 +34,10 @@ function App() {
       </Route>
 
       <Route exact path="/">
-        <Home></Home>
+        {
+          isSignedIn ? <Home></Home>
+          : <Auth></Auth>
+        }
       </Route>
 
       <Route path="*">
@@ -43,6 +48,7 @@ function App() {
     
     
     </Router>
+    </MyContext.Provider>
 
   );
 }

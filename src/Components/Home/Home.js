@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 
 import "./Home.css";
 import Post from "../Post/Post";
 import { Button } from "@material-ui/core";
-import { Link, Redirect, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = (props) => {
   const [posts, setPost] = useState([]);
@@ -18,7 +18,8 @@ const Home = (props) => {
 
 
   return (
-    <div className="container">
+   
+      <div className="container">
       {posts.map((post) => {
         return (
           <Post key={post.id} post={post}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Link} from 'react-router-dom'
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,6 +15,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { MyContext } from '../../App';
+
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -82,7 +85,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
  function Appbar() {
+
+  const [isSignedIn,setIsSignedIn]=useContext(MyContext)
+  
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -119,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link style={{textDecoration:"none", color:"white"}} to="/auth">My account</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link style={{textDecoration:"none", color:"black"}} to="/auth">My account</Link></MenuItem>
     </Menu>
   );
 
@@ -135,6 +142,7 @@ const useStyles = makeStyles((theme) => ({
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
+    
         <IconButton aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="secondary">
             <MailIcon />
@@ -161,8 +169,10 @@ const useStyles = makeStyles((theme) => ({
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+      
     </Menu>
   );
+
 
   return (
     <div style={{position:"sticky",top:"0px"}} className={classes.grow}>
@@ -228,6 +238,13 @@ const useStyles = makeStyles((theme) => ({
               <MoreIcon />
             </IconButton>
           </div>
+          {
+            isSignedIn && <div>
+            <IconButton>
+              <small onClick={()=>setIsSignedIn(false)} style={{color:"white"}}>Logout </small>
+            </IconButton>
+          </div>
+          }
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
