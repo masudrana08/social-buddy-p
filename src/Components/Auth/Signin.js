@@ -62,7 +62,8 @@ const Signin = (props) => {
       .then(res=>{
         return(
           props.history.push('/'),
-        setIsSignedIn(true)
+        setIsSignedIn(true),
+        console.log(res)
         )
       })
     }
